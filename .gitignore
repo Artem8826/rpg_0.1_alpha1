@@ -342,3 +342,4 @@ healthchecksdb
 Temp/
 Library/
 /[Ll]ibrary/
+/[Ll]ibrary/*
