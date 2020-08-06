@@ -339,8 +339,7 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-Temp/
-Library/
+/Temp/
 /[Ll]ibrary/
 /[Ll]ibrary/*
 /[Bb]ild
