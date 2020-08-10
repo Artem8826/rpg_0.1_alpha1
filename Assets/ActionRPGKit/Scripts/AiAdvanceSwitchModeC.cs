@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(AIsetAdvanceC))]
+[RequireComponent(typeof(GoblinRangerAI))]
 public class AiAdvanceSwitchModeC : MonoBehaviour {
 	private AiModeSet[] modeSetting = new AiModeSet[2];
 
@@ -20,7 +20,7 @@ public class AiAdvanceSwitchModeC : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update(){
-		AIsetAdvanceC ai = GetComponent<AIsetAdvanceC>();
+		GoblinRangerAI ai = GetComponent<GoblinRangerAI>();
 		if(ai.followTarget){
 			float distance = (transform.position - ai.GetDestination()).magnitude;
 			if(m == 0 && distance >= switchInRange){
@@ -34,7 +34,7 @@ public class AiAdvanceSwitchModeC : MonoBehaviour {
 	}
 
 	void SwitchMode(int mode){
-		AIsetAdvanceC ai = GetComponent<AIsetAdvanceC>();
+		GoblinRangerAI ai = GetComponent<GoblinRangerAI>();
 		ai.c = 0;
 		ai.approachDistance = modeSetting[mode].approachDistance;
 		ai.speed = modeSetting[mode].speed;

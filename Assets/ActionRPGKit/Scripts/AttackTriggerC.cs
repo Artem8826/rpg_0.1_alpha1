@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Components.Level1.IsSomething;
 
 [RequireComponent(typeof (StatusC))]
 [RequireComponent(typeof (UiMasterC))]
@@ -130,6 +131,11 @@ public class AttackTriggerC : MonoBehaviour {
 	[HideInInspector]
 	public bool onAttacking = false; // For Mecanim disable jumping animation
 
+    [Header("Attack Settings")] 
+    public int AttackDistance = 1;
+
+    private BoxIsSomething _boxIsSomething = new BoxIsSomething();
+
 	void Awake(){
 		if(!mainModel){
 			mainModel = this.gameObject;
@@ -251,13 +257,28 @@ public class AttackTriggerC : MonoBehaviour {
 		}
 		//Normal Trigger
 		if(Input.GetButton("Fire1") && Time.time > nextFire && !isCasting && !mobileMode && !skillAim){
-			if(Time.time > (nextFire + 0.5f)){
-				c = 0;
-			}
-			//Attack Combo
-			if(attackCombo.Length >= 1){
-				StartCoroutine(AttackCombo());
-			}
+//            if (!_boxIsSomething.HasLockedEnemy())
+//            {
+//                _boxIsSomething.LockEnemy();
+//            }
+
+            if (_boxIsSomething.LockEnemy())
+            {
+                if (_boxIsSomething.SqrDistanceToEnemy(transform.position) <= AttackDistance * AttackDistance)
+                {
+                    if (Time.time > (nextFire + 0.5f))
+                    {
+                        c = 0;
+                    }
+                    //Attack Combo
+                    if (attackCombo.Length >= 1)
+                    {
+                        StartCoroutine(AttackCombo());
+                    }
+                }
+
+                
+            }
 		}
 
 		//Blocking Damage
