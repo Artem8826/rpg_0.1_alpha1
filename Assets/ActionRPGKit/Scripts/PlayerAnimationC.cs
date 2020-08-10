@@ -60,18 +60,28 @@ public class PlayerAnimationC : MonoBehaviour {
 		}
 		CharacterController controller = player.GetComponent<CharacterController>();
 
+        /* Animation starts with button input
 		if(joyStick){
-			if(Input.GetButton("Horizontal") || Input.GetButton("Vertical")){
+			if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {
 				moveHorizontal = Input.GetAxis("Horizontal");
 				moveVertical = Input.GetAxis("Vertical");
-			}else{
+            } else {
 				moveHorizontal = joyStick.position.x;
 				moveVertical = joyStick.position.y;
 			}
-		}else{
+        }else{
 			moveHorizontal = Input.GetAxis("Horizontal");
 			moveVertical = Input.GetAxis("Vertical");
-		}
+        }*/
+
+        if (Input.GetMouseButton(0))
+        {
+            moveVertical = 0.15f;
+        }
+        else
+        {
+            moveVertical = 0;
+        }
 
 		if ((controller.collisionFlags & CollisionFlags.Below) != 0){
 			if(moveHorizontal > 0.1f)

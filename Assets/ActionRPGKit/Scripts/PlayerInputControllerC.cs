@@ -99,7 +99,7 @@ public class PlayerInputControllerC : MonoBehaviour {
 			return;
 		}
 		
-		if(dodgeRollSetting.canDodgeRoll){
+		/*if(dodgeRollSetting.canDodgeRoll){
 			//Dodge Forward
 			if(Input.GetButtonDown("Vertical") && Input.GetAxis("Vertical") > 0 && (controller.collisionFlags & CollisionFlags.Below) != 0 && Input.GetAxis("Horizontal") == 0){
 				if(Input.GetButtonDown ("Vertical") && (Time.time - lastTime) < 0.4f && Input.GetButtonDown ("Vertical") && (Time.time - lastTime) > 0.1f && Input.GetAxis("Vertical") > 0.03f){
@@ -136,7 +136,7 @@ public class PlayerInputControllerC : MonoBehaviour {
 				}else
 					lastTime = Time.time;
 			}
-		}
+		}*/
 		
 		//Cancel Sprint
 		if(sprint && Input.GetAxis("Vertical") < 0.02f || sprint && stamina <= 0 || sprint && Input.GetButtonDown("Fire1") || sprint && Input.GetKeyUp(KeyCode.LeftShift)){
@@ -166,7 +166,7 @@ public class PlayerInputControllerC : MonoBehaviour {
 			StartCoroutine(DoubleJumping());
 		}
 
-		if(joyStick){
+		/*if(joyStick){
 			if(Input.GetButton("Horizontal") || Input.GetButton("Vertical")){
 				moveHorizontal = Input.GetAxis("Horizontal");
 				moveVertical = Input.GetAxis("Vertical");
@@ -177,7 +177,7 @@ public class PlayerInputControllerC : MonoBehaviour {
 		}else{
 			moveHorizontal = Input.GetAxis("Horizontal");
 			moveVertical = Input.GetAxis("Vertical");
-		}
+		}*/
 
 		if(motor.grounded){
 			if(Input.GetButton("Jump") && !stat.freeze){
@@ -188,7 +188,7 @@ public class PlayerInputControllerC : MonoBehaviour {
 		}
 
 		//Vector3 directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		if(!unableToMove){
+		/*if(!unableToMove){
 			Vector3 directionVector = new Vector3(moveHorizontal, 0, moveVertical);
 
 			if(directionVector != Vector3.zero) {
@@ -203,7 +203,7 @@ public class PlayerInputControllerC : MonoBehaviour {
 
 			// Apply the direction to the CharacterMotor
 			motor.inputMoveDirection = transform.rotation * directionVector;
-		}
+		}*/
 
 		if(!mobileMode){
 			motor.inputJump = Input.GetButton("Jump");

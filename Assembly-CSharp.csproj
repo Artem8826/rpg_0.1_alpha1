@@ -64,9 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ActionRPGKit\Scripts\AIfriendC.cs" />
-    <Compile Include="Assets\ActionRPGKit\Scripts\AIsetAdvanceC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\AIsetC.cs" />
-    <Compile Include="Assets\ActionRPGKit\Scripts\ARPGcameraC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\AbnormalStatAttackC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\AddCashC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\AddItemC.cs" />
@@ -102,7 +100,6 @@
     <Compile Include="Assets\ActionRPGKit\Scripts\DelayBulletMove.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\DestroyObjectC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\DialogueC.cs" />
-    <Compile Include="Assets\ActionRPGKit\Scripts\DontDestroyOnloadC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\DropItemC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\EventSystemScript\AnimateText.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\EventSystemScript\EventActivator.cs" />
@@ -118,6 +115,7 @@
     <Compile Include="Assets\ActionRPGKit\Scripts\GainEXPC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\GameOverC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\GlobalConditionC.cs" />
+    <Compile Include="Assets\ActionRPGKit\Scripts\GoblinRangerAI.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\HealingSkillC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\HealthBarC.cs" />
     <Compile Include="Assets\ActionRPGKit\Scripts\Hook.cs" />
@@ -172,6 +170,11 @@
     <Compile Include="Assets\ActionRPGKit\SwimmingAddOn\ScriptCSharp\UnderwaterC.cs" />
     <Compile Include="Assets\ActionRPGKit\SwimmingAddOn\ScriptCSharp\UnderwaterControllerC.cs" />
     <Compile Include="Assets\ActionRPGKit\SwimmingAddOn\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
+    <Compile Include="Assets\Components\Cameras\ClassicRPGCamera\ClassicRpgCamera.cs" />
+    <Compile Include="Assets\Components\Cameras\MMORPGCamera\ARPGcameraC.cs" />
+    <Compile Include="Assets\Components\Level1\CodeOnly\DoNotDestroyOnLoad\DontDestroyOnloadC.cs" />
+    <Compile Include="Assets\Components\Level1\CodeOnly\Interfaces\IFightingEnemy.cs" />
+    <Compile Include="Assets\Components\Level1\CodeOnly\IsSomething\BoxIsSomething.cs" />
     <None Include="Assets\ActionRPGKit\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
     <None Include="Assets\ActionRPGKit\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\ActionRPGKit\Standard Assets\Effects\Projectors\Guidelines.txt" />

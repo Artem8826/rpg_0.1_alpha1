@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Components.Level1.IsSomething;
 
 // Require a character controller to be attached to the same game object
 [RequireComponent(typeof(CharacterController))]
@@ -197,6 +198,8 @@ public class CharacterMotorC : MonoBehaviour{
 	private Transform tr;
 	
 	private CharacterController controller;
+
+    private BoxIsSomething _isSomething = new BoxIsSomething();
 	
 	void Awake(){
 		controller = GetComponent<CharacterController>();
@@ -247,9 +250,14 @@ public class CharacterMotorC : MonoBehaviour{
 		// Reset variables that will be set by collision function
 		movingPlatform.hitPlatform = null;
 		groundNormal = Vector3.zero;
-		
+
+        if (Input.GetMouseButton(0))
+        {
+            currentMovementOffset = MoveOnMouse(currentMovementOffset);
+        }
+
 		// Move our character!
-		movement.collisionFlags = controller.Move(currentMovementOffset);
+        movement.collisionFlags = controller.Move(currentMovementOffset);
 		//controller.Move(currentMovementOffset);
 		
 		movement.lastHitPoint = movement.hitPoint;
@@ -335,7 +343,28 @@ public class CharacterMotorC : MonoBehaviour{
 			movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation;
 		}
 	}
-	
+
+    protected Vector3 MoveOnMouse(Vector3 velocityVector3)
+    {
+//        if (!_isSomething.HasLockedEnemy())
+//        {
+//            _isSomething.LockEnemy();
+//            Debug.Log(_isSomething.IsEnemy());
+//        }
+        
+        bool EnemyOrTooFar = !_isSomething.IsEnemy() || _isSomething.SqrDistanceToEnemy(transform.position) > 15;
+
+        if (EnemyOrTooFar && velocityVector3.x.Equals(0.0f) && velocityVector3.z.Equals(0.0f))
+        {
+            Vector3 directionVector = transform.forward * Time.deltaTime * movement.maxForwardSpeed;
+
+            velocityVector3.z = directionVector.z;
+            velocityVector3.x = directionVector.x;
+        }
+
+        return velocityVector3;
+    }
+
 	void FixedUpdate(){
 		if(bounce){
 			return;

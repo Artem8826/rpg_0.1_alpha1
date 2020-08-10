@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Components.Level1.Interfaces;
 
 [RequireComponent(typeof(StatusC))]
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(MonGravity))]
 [AddComponentMenu("Action-RPG Kit(C#)/Create Enemy(Combo)")]
 
-public class AIsetAdvanceC : MonoBehaviour {
+public class GoblinRangerAI : FightingEnemy
+{
 	public enum AIState { Moving = 0, Pausing = 1 , Idle = 2 , Patrol = 3}
 	
 	public GameObject mainModel;

@@ -85,6 +85,7 @@ public class GameOverC : MonoBehaviour {
 			respawn.GetComponent<StatusC>().statusPoint = PlayerPrefs.GetInt("TempPlayerSTP");
 			respawn.GetComponent<StatusC>().skillPoint = PlayerPrefs.GetInt("TempPlayerSKP");
 			mainCam = GameObject.FindWithTag("MainCamera").transform;
+            Debug.Log(mainCam.gameObject.name);
 			if(mainCam.GetComponent<ARPGcameraC>())
 				mainCam.GetComponent<ARPGcameraC>().target = respawn.transform;
 			//-------------------------------
@@ -119,8 +120,8 @@ public class GameOverC : MonoBehaviour {
 			}
 			//----------------------------------
 			//Screen.lockCursor = true;
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
+//			Cursor.lockState = CursorLockMode.Locked;
+//			Cursor.visible = false;
 			//--------------Set Target to Monster---------------
 			/*GameObject[] mon; 
 			mon = GameObject.FindGameObjectsWithTag("Enemy"); 
