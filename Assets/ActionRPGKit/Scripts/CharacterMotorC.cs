@@ -1,13 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets;
+using Assets.Components.Level1.CodeOnly.TimeLocker;
 using Assets.Components.Level1.IsSomething;
+using Assets.Interfaces;
 
 // Require a character controller to be attached to the same game object
 [RequireComponent(typeof(CharacterController))]
 [AddComponentMenu("Character/Character Motor")]
 
-public class CharacterMotorC : MonoBehaviour{
+public class CharacterMotorC : MonoBehaviour, IMayHiding
+{
 	public bool canControl = true;
 	public float limitVelocityY = 5;
 	[HideInInspector]
@@ -52,6 +56,7 @@ public class CharacterMotorC : MonoBehaviour{
 		// The gravity for the character
 		public float gravity = 10.0f;
 		public float maxFallSpeed = 20.0f;
+        public bool isHiding = false;
 		
 		// For the next variables, [System.NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
 		// Very handy for organization!
@@ -200,11 +205,16 @@ public class CharacterMotorC : MonoBehaviour{
 	private CharacterController controller;
 
     private BoxIsSomething _isSomething = new BoxIsSomething();
+    private TimeLocker _timeLockerXPress = new TimeLocker();
+    private StealthBorderController stealthBorderController;
 	
 	void Awake(){
 		controller = GetComponent<CharacterController>();
 		tr = transform;
-	}
+
+        _timeLockerXPress.SetTimer(1);
+        stealthBorderController = FindObjectOfType<StealthBorderController>();
+    }
 	
 	private void UpdateFunction(){
 		// We copy the actual velocity into a temporary variable that we can manipulate.
@@ -342,6 +352,22 @@ public class CharacterMotorC : MonoBehaviour{
 			movingPlatform.activeGlobalRotation = tr.rotation;
 			movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation;
 		}
+
+        if (Input.GetKey(KeyCode.X) && _timeLockerXPress.IsTimeToGo())
+        {
+            Debug.Log("X pressed");
+
+            movement.isHiding = !movement.isHiding;
+        }
+
+        if (!stealthBorderController.IsInStealthZoneBorder(this.gameObject) && movement.isHiding)
+        {
+            Debug.Log("Revealed");
+
+            movement.isHiding = false;
+        }
+
+        _timeLockerXPress.GoTimer();
 	}
 
     protected Vector3 MoveOnMouse(Vector3 velocityVector3)
@@ -701,4 +727,9 @@ public class CharacterMotorC : MonoBehaviour{
 		movement.frameVelocity = Vector3.zero;
 		SendMessage("OnExternalVelocity");
 	}
+
+    public bool IsHidingRightNow()
+    {
+        return movement.isHiding;
+    }
 }

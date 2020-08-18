@@ -173,8 +173,13 @@
     <Compile Include="Assets\Components\Cameras\ClassicRPGCamera\ClassicRpgCamera.cs" />
     <Compile Include="Assets\Components\Cameras\MMORPGCamera\ARPGcameraC.cs" />
     <Compile Include="Assets\Components\Level1\CodeOnly\DoNotDestroyOnLoad\DontDestroyOnloadC.cs" />
-    <Compile Include="Assets\Components\Level1\CodeOnly\Interfaces\IFightingEnemy.cs" />
     <Compile Include="Assets\Components\Level1\CodeOnly\IsSomething\BoxIsSomething.cs" />
+    <Compile Include="Assets\Components\Level1\CodeOnly\TimeLocker\TimeLocker.cs" />
+    <Compile Include="Assets\Components\StealthMode\Scripts\StealthController.cs" />
+    <Compile Include="Assets\Components\StealthMode\Scripts\StealthZone.cs" />
+    <Compile Include="Assets\Interfaces\IFightingEnemy.cs" />
+    <Compile Include="Assets\Interfaces\IMayHiding.cs" />
+    <Compile Include="Assets\StealthBorderController.cs" />
     <None Include="Assets\ActionRPGKit\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
     <None Include="Assets\ActionRPGKit\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\ActionRPGKit\Standard Assets\Effects\Projectors\Guidelines.txt" />
