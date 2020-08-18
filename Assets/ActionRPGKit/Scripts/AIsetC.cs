@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Components.Level1.Interfaces;
+using Assets.Interfaces;
 
 [RequireComponent(typeof(StatusC))]
 [RequireComponent(typeof(CharacterController))]
@@ -335,14 +336,30 @@ public class AIsetC : FightingEnemy
 		}
 		
 		Collider[] objectsAroundMe = Physics.OverlapSphere(transform.position , findingradius);
-		foreach(Collider obj in objectsAroundMe){
-			if(obj.CompareTag("Player") || obj.CompareTag("Ally")){
+
+		foreach(Collider obj in objectsAroundMe) {
+			if(obj.CompareTag("Player") || obj.CompareTag("Ally")) {
 				Vector3 diff = (obj.transform.position - transform.position); 
-				float curDistance = diff.sqrMagnitude; 
-				if(curDistance < distance) { 
-					//------------
-					followTarget = obj.transform;
-					distance = curDistance;
+				float curDistance = diff.sqrMagnitude;
+                bool doFollow = true;
+
+                if(curDistance < distance) {
+                    if (obj.GetComponent<IMayHiding>() is IMayHiding mayHiding && mayHiding.IsHidingRightNow())
+                    {
+                        if (followTarget == obj.transform)
+                        {
+                            followTarget = null;
+                        }
+
+                        doFollow = false;
+                    }
+
+                    if (doFollow)
+                    {
+                        //------------
+                        followTarget = obj.transform;
+                        distance = curDistance;
+                    }
 				} 
 			}
 		}
